@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empleos — ¿Qué hay de nuevo?</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .section { padding: 3rem 0; }
+    .job-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem 1.5rem;
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+    .job-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: rgba(255,255,255,0.14); }
+    .company-logo {
+      width: 52px; height: 52px; border-radius: 10px;
+      background: var(--surface2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; flex-shrink: 0;
+    }
+    .job-info { flex: 1; }
+    .job-info h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .company-name { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+    .job-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.7rem; }
+    .job-tag { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; padding: 0.18rem 0.6rem; font-size: 0.7rem; color: var(--text-muted); }
+    .job-salary { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
+    .job-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
+    .job-date { font-size: 0.72rem; color: var(--text-muted); }
+
+    .stats-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+    .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; flex: 1; min-width: 140px; }
+    .stat-box .num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+    .stat-box .lbl { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media(max-width: 600px) {
+      .job-card { flex-direction: column; }
+      .job-right { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">¿Qué hay <span>de nuevo?</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="autos.html">Autos</a></li>
+    <li><a href="objetos.html">Objetos</a></li>
+    <li><a href="empleos.html" class="active">Empleos</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<nav class="nav-mobile" id="nav-mobile">
+  <a href="index.html">Inicio</a>
+  <a href="autos.html">Autos</a>
+  <a href="objetos.html">Objetos</a>
+  <a href="empleos.html" class="active">Empleos</a>
+  <a href="servicios.html">Servicios</a>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <span class="tag">💼 Empleos</span>
+    <h1>Ofertas de trabajo</h1>
+    <p>Encontrá el empleo que buscás o publicá tu oferta laboral. Miles de oportunidades en todo el país.</p>
+  </div>
+</div>
+
+<div class="container">
+  <section class="section">
+
+    <!-- Estadísticas -->
+    <div class="stats-row fade-in">
+      <div class="stat-box"><div class="num">512</div><div class="lbl">Empleos activos</div></div>
+      <div class="stat-box"><div class="num">180</div><div class="lbl">Empresas buscando</div></div>
+      <div class="stat-box"><div class="num">84</div><div class="lbl">Empleos remotos</div></div>
+      <div class="stat-box"><div class="num">47</div><div class="lbl">Publicados hoy</div></div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="tech">Tecnología</button>
+      <button class="filter-btn" data-filter="salud">Salud</button>
+      <button class="filter-btn" data-filter="comercial">Comercial</button>
+      <button class="filter-btn" data-filter="logistica">Logística</button>
+      <button class="filter-btn" data-filter="remoto">🌐 Remoto</button>
+    </div>
+
+    <!-- Listado de empleos -->
+    <div style="display:flex; flex-direction:column; gap:1rem;" class="fade-in">
+
+      <div class="job-card listing-card" data-cat="tech">
+        <div class="company-logo">💻</div>
+        <div class="job-info">
+          <h3>Desarrollador Full Stack — React + Node.js</h3>
+          <p class="company-name">MercaTech S.A. · Buenos Aires (Remoto)</p>
+          <div class="job-tags">
+            <span class="job-tag">React</span>
+            <span class="job-tag">Node.js</span>
+            <span class="job-tag">PostgreSQL</span>
+            <span class="job-tag">Docker</span>
+            <span class="badge badge-blue" style="font-size:0.68rem">Remoto</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Buscamos desarrollador con 2+ años de experiencia para trabajar en plataforma SaaS de logística. Equipo ágil, buen ambiente, crecimiento real.</p>
+        </div>
+        <div class="job-right">
+          <span class="job-salary">$1.400.000/mes</span>
+          <span class="badge badge-green">Tiempo completo</span>
+          <span class="job-date">Publicado hace 2 hs</span>
+          <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Postularme</a>
+        </div>
+      </div>
+
+      <div class="job-card listing-card" data-cat="salud">
+        <div class="company-logo">🏥</div>
+        <div class="job-info">
+          <h3>Médico Clínico — Guardia rotativa</h3>
+          <p class="company-name">Clínica del Sol · Córdoba Capital</p>
+          <div class="job-tags">
+            <span class="job-tag">Medicina clínica</span>
+            <span class="job-tag">Guardia</span>
+            <span class="job-tag">Matriculado</span>
+            <span class="badge badge-yellow" style="font-size:0.68rem">Presencial</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Clínica privada de alta complejidad incorpora médico clínico para guardias de 12hs. Residentes recientes bienvenidos.</p>
+        </div>
+        <div class="job-right">
+          <span class="job-salary">$980.000/mes</span>
+          <span class="badge badge-yellow">Part time</span>
+          <span class="job-date">Publicado hace 5 hs</span>
+          <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Postularme</a>
+        </div>
+      </div>
+
+      <div class="job-card listing-card" data-cat="comercial">
+        <div class="company-logo">📊</div>
+        <div class="job-info">
+          <h3>Ejecutivo de Ventas B2B — Sector Fintech</h3>
+          <p class="company-name">PagoRed Argentina · Buenos Aires</p>
+          <div class="job-tags">
+            <span class="job-tag">Ventas B2B</span>
+            <span class="job-tag">CRM</span>
+            <span class="job-tag">Fintech</span>
+            <span class="badge badge-green" style="font-size:0.68rem">Híbrido</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Empresa de pagos en crecimiento busca vendedor con experiencia en productos financieros. Base + comisiones muy atractivas.</p>
+        </div>
+        <div class="job-right">
+          <span class="job-salary">$850.000 + comisiones</span>
+          <span class="badge badge-green">Tiempo completo</span>
+          <span class="job-date">Publicado ayer</span>
+          <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Postularme</a>
+        </div>
+      </div>
+
+      <div class="job-card listing-card" data-cat="remoto">
+        <div class="company-logo">🌐</div>
+        <div class="job-info">
+          <h3>Diseñador UX/UI — Producto digital</h3>
+          <p class="company-name">NexoApp · 100% Remoto (LATAM)</p>
+          <div class="job-tags">
+            <span class="job-tag">Figma</span>
+            <span class="job-tag">UX Research</span>
+            <span class="job-tag">Design System</span>
+            <span class="badge badge-blue" style="font-size:0.68rem">Remoto</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Startup de tecnología educativa busca diseñador con portafolio de apps. Posibilidad de crecer hacia UX Lead.</p>
+        </div>
+        <div class="job-right">
+          <span class="job-salary">USD 1.500/mes</span>
+          <span class="badge badge-blue">Remoto</span>
+          <span class="job-date">Publicado hace 1 día</span>
+          <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Postularme</a>
+        </div>
+      </div>
+
+      <div class="job-card listing-card" data-cat="logistica">
+        <div class="company-logo">🚚</div>
+        <div class="job-info">
+          <h3>Coordinador de Logística — Depósito CABA</h3>
+          <p class="company-name">LogiMax S.R.L. · Parque Avellaneda, CABA</p>
+          <div class="job-tags">
+            <span class="job-tag">Excel</span>
+            <span class="job-tag">WMS</span>
+            <span class="job-tag">Inventario</span>
+            <span class="badge badge-yellow" style="font-size:0.68rem">Presencial</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Empresa de distribución de insumos médicos busca coordinador de depósito con experiencia en gestión de inventario.</p>
+        </div>
+        <div class="job-right">
+          <span class="job-salary">$720.000/mes</span>
+          <span class="badge badge-green">Tiempo completo</span>
+          <span class="job-date">Publicado hace 2 días</span>
+          <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Postularme</a>
+        </div>
+      </div>
+
+      <div class="job-card listing-card" data-cat="tech remoto">
+        <div class="company-logo">🤖</div>
+        <div class="job-info">
+          <h3>Data Scientist — IA y Machine Learning</h3>
+          <p class="company-name">DataCore Analytics · Remoto (Argentina)</p>
+          <div class="job-tags">
+            <span class="job-tag">Python</span>
+            <span class="job-tag">TensorFlow</span>
+            <span class="job-tag">SQL</span>
+            <span class="job-tag">MLOps</span>
+            <span class="badge badge-blue" style="font-size:0.68rem">Remoto</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Consultora de datos busca especialista para desarrollar modelos predictivos en industria retail. Proyectos con empresas Fortune 500.</p>
+        </div>
+        <div class="job-right">
+          <span class="job-salary">USD 2.200/mes</span>
+          <span class="badge badge-blue">Remoto</span>
+          <span class="job-date">Publicado hace 3 días</span>
+          <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Postularme</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="#" class="btn btn-outline">Ver más empleos →</a>
+    </div>
+
+  </section>
+</div>
+
+<footer>
+  <span class="logo">¿Qué hay de nuevo?</span>
+  <p>© 2026 — Clasificados y noticias de Argentina</p>
+  <nav class="footer-links">
+    <a href="autos.html">Autos</a>
+    <a href="objetos.html">Objetos</a>
+    <a href="empleos.html">Empleos</a>
+    <a href="servicios.html">Servicios</a>
+  </nav>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

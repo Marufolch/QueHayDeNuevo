@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compra/Venta de Autos — ¿Qué hay de nuevo?</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .section { padding: 3rem 0; }
+    .auto-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+    .auto-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(255,255,255,0.14); }
+    .auto-card .card-img { height: 210px; position: relative; }
+    .auto-card .card-img img { height: 100%; object-fit: cover; }
+    .auto-badge { position: absolute; top: 10px; left: 10px; }
+    .auto-body { padding: 1.25rem; }
+    .auto-body h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .auto-specs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.75rem 0; }
+    .spec-pill { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; padding: 0.2rem 0.65rem; font-size: 0.72rem; color: var(--text-muted); }
+    .auto-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .highlight-banner { background: linear-gradient(135deg, rgba(240,192,64,0.08), rgba(79,195,247,0.06)); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .highlight-banner .icon { font-size: 3rem; }
+    .highlight-banner h2 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; }
+    .highlight-banner p { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem; }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">¿Qué hay <span>de nuevo?</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="autos.html" class="active">Autos</a></li>
+    <li><a href="objetos.html">Objetos</a></li>
+    <li><a href="empleos.html">Empleos</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<nav class="nav-mobile" id="nav-mobile">
+  <a href="index.html">Inicio</a>
+  <a href="autos.html" class="active">Autos</a>
+  <a href="objetos.html">Objetos</a>
+  <a href="empleos.html">Empleos</a>
+  <a href="servicios.html">Servicios</a>
+</nav>
+
+<!-- Page header -->
+<div class="page-header">
+  <div class="container">
+    <span class="tag">🚗 Clasificados</span>
+    <h1>Compra y venta de autos</h1>
+    <p>Encontrá el vehículo ideal o publicá el tuyo. Cero km, usados, motos y utilitarios.</p>
+  </div>
+</div>
+
+<div class="container">
+  <section class="section">
+
+    <!-- Banner -->
+    <div class="highlight-banner fade-in">
+      <span class="icon">🚀</span>
+      <div>
+        <h2>Publicá tu auto gratis</h2>
+        <p>Tu aviso llega a miles de compradores en todo el país. Sin comisiones ocultas.</p>
+      </div>
+      <a href="#" class="btn btn-primary" style="margin-left:auto">Publicar aviso</a>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="sedan">Sedán</button>
+      <button class="filter-btn" data-filter="suv">SUV</button>
+      <button class="filter-btn" data-filter="pickup">Pick-up</button>
+      <button class="filter-btn" data-filter="electrico">Eléctrico</button>
+      <button class="filter-btn" data-filter="moto">Motos</button>
+    </div>
+
+    <!-- Grid de autos -->
+    <div class="grid-3 fade-in">
+
+      <div class="auto-card listing-card" data-cat="suv">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&auto=format&fit=crop" alt="Toyota RAV4" loading="lazy"/>
+          <span class="auto-badge badge badge-green">Usado</span>
+        </div>
+        <div class="auto-body">
+          <p class="card-tag">SUV · Toyota</p>
+          <h3>Toyota RAV4 2023 — 4x4</h3>
+          <div class="auto-specs">
+            <span class="spec-pill">⛽ Nafta</span>
+            <span class="spec-pill">🔄 Automático</span>
+            <span class="spec-pill">📍 CABA</span>
+            <span class="spec-pill">38.000 km</span>
+          </div>
+          <p class="card-body p" style="font-size:0.82rem;color:var(--text-muted)">RAV4 impecable, único dueño, full equipo, techo solar, asientos de cuero. Con toda la documentación al día.</p>
+          <div class="auto-footer">
+            <span class="card-price">$46.000.000</span>
+            <a href="#" class="btn btn-outline" style="font-size:0.78rem;padding:0.4rem 0.8rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="auto-card listing-card" data-cat="pickup">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop" alt="Ford Ranger" loading="lazy"/>
+          <span class="auto-badge badge badge-yellow">Destacado</span>
+        </div>
+        <div class="auto-body">
+          <p class="card-tag">Pick-up · Ford</p>
+          <h3>Ford Ranger XLT 2024 — Diésel</h3>
+          <div class="auto-specs">
+            <span class="spec-pill">⛽ Diésel</span>
+            <span class="spec-pill">🔄 Manual 6V</span>
+            <span class="spec-pill">📍 Córdoba</span>
+            <span class="spec-pill">12.000 km</span>
+          </div>
+          <p style="font-size:0.82rem;color:var(--text-muted)">Ranger casi 0km, doble cabina, cámara de retroceso, control de crucero adaptativo. Ideal para trabajo y aventura.</p>
+          <div class="auto-footer">
+            <span class="card-price">$38.500.000</span>
+            <a href="#" class="btn btn-outline" style="font-size:0.78rem;padding:0.4rem 0.8rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="auto-card listing-card" data-cat="electrico">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&auto=format&fit=crop" alt="Tesla Model 3" loading="lazy"/>
+          <span class="auto-badge badge badge-blue">Eléctrico</span>
+        </div>
+        <div class="auto-body">
+          <p class="card-tag">Eléctrico · Tesla</p>
+          <h3>Tesla Model 3 2023 — Long Range</h3>
+          <div class="auto-specs">
+            <span class="spec-pill">⚡ Eléctrico</span>
+            <span class="spec-pill">🔄 Automático</span>
+            <span class="spec-pill">📍 Buenos Aires</span>
+            <span class="spec-pill">22.000 km</span>
+          </div>
+          <p style="font-size:0.82rem;color:var(--text-muted)">Autopilot activado, pantalla 15", cargador en casa incluido. 560 km de autonomía real comprobada.</p>
+          <div class="auto-footer">
+            <span class="card-price">USD 29.000</span>
+            <a href="#" class="btn btn-outline" style="font-size:0.78rem;padding:0.4rem 0.8rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="auto-card listing-card" data-cat="sedan">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=600&auto=format&fit=crop" alt="Volkswagen Vento" loading="lazy"/>
+          <span class="auto-badge badge badge-green">Usado</span>
+        </div>
+        <div class="auto-body">
+          <p class="card-tag">Sedán · Volkswagen</p>
+          <h3>VW Vento TSI 2022 — Highline</h3>
+          <div class="auto-specs">
+            <span class="spec-pill">⛽ Nafta</span>
+            <span class="spec-pill">🔄 DSG 7V</span>
+            <span class="spec-pill">📍 Rosario</span>
+            <span class="spec-pill">55.000 km</span>
+          </div>
+          <p style="font-size:0.82rem;color:var(--text-muted)">Vento inmaculado, mantenimiento oficial, full equipo. Ideal para ciudad y ruta. Acepta financiación bancaria.</p>
+          <div class="auto-footer">
+            <span class="card-price">$22.800.000</span>
+            <a href="#" class="btn btn-outline" style="font-size:0.78rem;padding:0.4rem 0.8rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="auto-card listing-card" data-cat="suv">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1625231338736-2d9657ea22a3?w=600&auto=format&fit=crop" alt="Jeep Renegade" loading="lazy"/>
+          <span class="auto-badge badge badge-green">Usado</span>
+        </div>
+        <div class="auto-body">
+          <p class="card-tag">SUV · Jeep</p>
+          <h3>Jeep Renegade Trailhawk 2022</h3>
+          <div class="auto-specs">
+            <span class="spec-pill">⛽ Nafta</span>
+            <span class="spec-pill">🔄 Automático</span>
+            <span class="spec-pill">📍 Mendoza</span>
+            <span class="spec-pill">67.000 km</span>
+          </div>
+          <p style="font-size:0.82rem;color:var(--text-muted)">Trailhawk 4x4, protección offroad, suspensión reforzada. Perfecta para el terreno cordillerano.</p>
+          <div class="auto-footer">
+            <span class="card-price">$28.500.000</span>
+            <a href="#" class="btn btn-outline" style="font-size:0.78rem;padding:0.4rem 0.8rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="auto-card listing-card" data-cat="moto">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1558981285-6f0c68730b7e?w=600&auto=format&fit=crop" alt="Honda CB500" loading="lazy"/>
+          <span class="auto-badge badge badge-red">Moto</span>
+        </div>
+        <div class="auto-body">
+          <p class="card-tag">Moto · Honda</p>
+          <h3>Honda CB500F 2023 — 471cc</h3>
+          <div class="auto-specs">
+            <span class="spec-pill">⛽ Nafta</span>
+            <span class="spec-pill">🔄 Manual 6V</span>
+            <span class="spec-pill">📍 CABA</span>
+            <span class="spec-pill">15.000 km</span>
+          </div>
+          <p style="font-size:0.82rem;color:var(--text-muted)">CB500 excelente estado, ABS, llantas de aleación, ideal para rutear. Vendo por cambio de segmento.</p>
+          <div class="auto-footer">
+            <span class="card-price">$5.200.000</span>
+            <a href="#" class="btn btn-outline" style="font-size:0.78rem;padding:0.4rem 0.8rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- More button -->
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="#" class="btn btn-outline">Ver más avisos →</a>
+    </div>
+
+  </section>
+</div>
+
+<footer>
+  <span class="logo">¿Qué hay de nuevo?</span>
+  <p>© 2026 — Clasificados y noticias de Argentina</p>
+  <nav class="footer-links">
+    <a href="autos.html">Autos</a>
+    <a href="objetos.html">Objetos</a>
+    <a href="empleos.html">Empleos</a>
+    <a href="servicios.html">Servicios</a>
+  </nav>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

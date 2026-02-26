@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios — ¿Qué hay de nuevo?</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .section { padding: 3rem 0; }
+
+    .srv-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .srv-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(255,255,255,0.14); }
+    .srv-card .card-img { height: 180px; }
+    .srv-card .card-img img { height: 100%; object-fit: cover; }
+    .srv-body { padding: 1.2rem; }
+    .srv-body h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .srv-name { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+    .srv-stars { color: var(--accent); font-size: 0.82rem; }
+    .srv-rate { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--accent); }
+    .srv-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+
+    .highlight-banner { background: linear-gradient(135deg, rgba(255,107,107,0.08), rgba(240,192,64,0.06)); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .highlight-banner .icon { font-size: 3rem; }
+    .highlight-banner h2 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; }
+    .highlight-banner p { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem; }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">¿Qué hay <span>de nuevo?</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="autos.html">Autos</a></li>
+    <li><a href="objetos.html">Objetos</a></li>
+    <li><a href="empleos.html">Empleos</a></li>
+    <li><a href="servicios.html" class="active">Servicios</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<nav class="nav-mobile" id="nav-mobile">
+  <a href="index.html">Inicio</a>
+  <a href="autos.html">Autos</a>
+  <a href="objetos.html">Objetos</a>
+  <a href="empleos.html">Empleos</a>
+  <a href="servicios.html" class="active">Servicios</a>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <span class="tag">🔧 Servicios</span>
+    <h1>Servicios profesionales</h1>
+    <p>Encontrá plomeros, electricistas, diseñadores, tutores y miles de profesionales cerca tuyo.</p>
+  </div>
+</div>
+
+<div class="container">
+  <section class="section">
+
+    <div class="highlight-banner fade-in">
+      <span class="icon">🔧</span>
+      <div>
+        <h2>¿Ofrecés un servicio?</h2>
+        <p>Publicá tu perfil profesional gratis y llegá a nuevos clientes en tu zona.</p>
+      </div>
+      <a href="#" class="btn btn-primary" style="margin-left:auto">Publicar servicio</a>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="hogar">Hogar</button>
+      <button class="filter-btn" data-filter="digital">Digital</button>
+      <button class="filter-btn" data-filter="salud">Salud</button>
+      <button class="filter-btn" data-filter="educacion">Educación</button>
+      <button class="filter-btn" data-filter="eventos">Eventos</button>
+    </div>
+
+    <div class="grid-3 fade-in">
+
+      <div class="srv-card listing-card" data-cat="hogar">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1590491710776-b5e10e195b44?w=600&auto=format&fit=crop" alt="Plomero profesional" loading="lazy"/>
+        </div>
+        <div class="srv-body">
+          <p class="card-tag">🔧 Hogar · Plomería</p>
+          <h3>Plomería de urgencia 24hs — CABA y GBA</h3>
+          <div class="srv-name">
+            <span>🧑‍🔧 Carlos R.</span>
+            <span class="srv-stars">★★★★★</span>
+            <span style="font-size:0.72rem">(148 reseñas)</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Plomero matriculado, 15 años de experiencia. Destapaciones, cañerías, griferías. Presupuesto sin cargo.</p>
+          <div class="srv-footer">
+            <span class="srv-rate">$8.500/hora</span>
+            <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-card listing-card" data-cat="digital">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format&fit=crop" alt="Diseño gráfico" loading="lazy"/>
+        </div>
+        <div class="srv-body">
+          <p class="card-tag">🎨 Digital · Diseño</p>
+          <h3>Diseño gráfico y branding — Identidad visual</h3>
+          <div class="srv-name">
+            <span>🎨 Laura M.</span>
+            <span class="srv-stars">★★★★★</span>
+            <span style="font-size:0.72rem">(93 reseñas)</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Diseñadora con 8 años de experiencia en branding, logos, redes sociales y material impreso para pymes.</p>
+          <div class="srv-footer">
+            <span class="srv-rate">Desde $45.000</span>
+            <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-card listing-card" data-cat="hogar">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop" alt="Electricista" loading="lazy"/>
+        </div>
+        <div class="srv-body">
+          <p class="card-tag">⚡ Hogar · Electricidad</p>
+          <h3>Electricista matriculado — Instalaciones y tableros</h3>
+          <div class="srv-name">
+            <span>⚡ Miguel A.</span>
+            <span class="srv-stars">★★★★☆</span>
+            <span style="font-size:0.72rem">(61 reseñas)</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Instalaciones eléctricas domiciliarias e industriales. Tableros, automatizaciones, paneles solares.</p>
+          <div class="srv-footer">
+            <span class="srv-rate">$9.000/hora</span>
+            <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-card listing-card" data-cat="educacion">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=600&auto=format&fit=crop" alt="Clases particulares" loading="lazy"/>
+        </div>
+        <div class="srv-body">
+          <p class="card-tag">📚 Educación · Clases</p>
+          <h3>Clases particulares de Matemáticas y Física</h3>
+          <div class="srv-name">
+            <span>📖 Ana G.</span>
+            <span class="srv-stars">★★★★★</span>
+            <span style="font-size:0.72rem">(204 reseñas)</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Profesora egresada del Conicet. Clases presenciales o por Meet para secundaria y universitarios.</p>
+          <div class="srv-footer">
+            <span class="srv-rate">$6.500/hora</span>
+            <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-card listing-card" data-cat="salud">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop" alt="Entrenador personal" loading="lazy"/>
+        </div>
+        <div class="srv-body">
+          <p class="card-tag">💪 Salud · Fitness</p>
+          <h3>Entrenador personal — Online y presencial</h3>
+          <div class="srv-name">
+            <span>🏋️ Lucas P.</span>
+            <span class="srv-stars">★★★★★</span>
+            <span style="font-size:0.72rem">(77 reseñas)</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Licenciado en Educación Física. Planes personalizados para pérdida de peso, musculación o rehabilitación.</p>
+          <div class="srv-footer">
+            <span class="srv-rate">$7.000/sesión</span>
+            <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv-card listing-card" data-cat="eventos">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=600&auto=format&fit=crop" alt="Fotografía de eventos" loading="lazy"/>
+        </div>
+        <div class="srv-body">
+          <p class="card-tag">📷 Eventos · Fotografía</p>
+          <h3>Fotografía y video para eventos y casamientos</h3>
+          <div class="srv-name">
+            <span>📸 Sofía D.</span>
+            <span class="srv-stars">★★★★★</span>
+            <span style="font-size:0.72rem">(132 reseñas)</span>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-muted)">Cobertura completa de casamientos, cumpleaños y eventos corporativos. Entrega digital en 15 días.</p>
+          <div class="srv-footer">
+            <span class="srv-rate">Desde $200.000</span>
+            <a href="#" class="btn btn-primary" style="font-size:0.78rem;padding:0.4rem 0.9rem">Contactar</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="#" class="btn btn-outline">Ver más servicios →</a>
+    </div>
+
+  </section>
+</div>
+
+<footer>
+  <span class="logo">¿Qué hay de nuevo?</span>
+  <p>© 2026 — Clasificados y noticias de Argentina</p>
+  <nav class="footer-links">
+    <a href="autos.html">Autos</a>
+    <a href="objetos.html">Objetos</a>
+    <a href="empleos.html">Empleos</a>
+    <a href="servicios.html">Servicios</a>
+  </nav>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
