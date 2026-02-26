@@ -490,7 +490,30 @@
     <a href="servicios.html">Servicios</a>
   </nav>
 </footer>
+<!-- CONTADOR DE VISITAS (solo visible con ?admin=true en la URL) -->
+<div id="visitas-box" style="display:none; position:fixed; bottom:1.5rem; right:1.5rem; background:#151820; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:0.75rem 1.25rem; font-family:'Syne',sans-serif; font-size:0.85rem; color:#e8eaf2; z-index:999; box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+  👁 Visitas totales: <strong id="visitas-num">…</strong>
+</div>
 
+<script>
+  // Cambiá "miclaveSecreta" por la palabra que quieras
+  const CLAVE = 'miclaveSecreta';
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('admin') === CLAVE) {
+    fetch('https://api.countapi.xyz/hit/quehaydenuevojobs/visitas')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('visitas-num').textContent = data.value.toLocaleString('es-AR');
+        document.getElementById('visitas-box').style.display = 'block';
+      })
+      .catch(() => {});
+  } else {
+    // Visita normal: suma igual, pero no muestra nada
+    fetch('https://api.countapi.xyz/hit/quehaydenuevojobs/visitas').catch(() => {});
+  }
+</script>
+```
 <script src="main.js"></script>
 </body>
 </html>
