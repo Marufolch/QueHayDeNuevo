@@ -495,24 +495,31 @@
   👁 Visitas totales: <strong id="visitas-num">…</strong>
 </div>
 
-<script>
-  const CLAVE = 'Apolo267';
-  const params = new URLSearchParams(window.location.search);
+<script type="module">
+  import { initializeApp }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getDatabase, ref, runTransaction }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
 
-  // Usá el dominio de tu página como namespace
-  const API_URL = 'https://counterapi.com/api/marufolch.github.io/view/quehaydenuevojobs';
+  const app = initializeApp({
+    apiKey:      'AIzaSyC0FSH_x0pBpTK6Yki_L3cZSE3K8ZQqITw',
+    databaseURL: 'https://quehaydenuevo-d19e4-default-rtdb.firebaseio.com'
+  });
 
-  if (params.get('admin') === CLAVE) {
-    fetch(API_URL)
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById('visitas-num').textContent = data.value.toLocaleString('es-AR');
+  const db      = getDatabase(app);
+  const contRef = ref(db, 'visitas');
+  const CLAVE   = 'Apolo267';
+  const params  = new URLSearchParams(window.location.search);
+
+  runTransaction(contRef, current => (current || 0) + 1)
+    .then(result => {
+      if (params.get('admin') === CLAVE) {
+        const total = result.snapshot.val();
+        document.getElementById('visitas-num').textContent = total.toLocaleString('es-AR');
         document.getElementById('visitas-box').style.display = 'block';
-      })
-      .catch(() => {});
-  } else {
-    fetch(API_URL).catch(() => {});
-  }
+      }
+    })
+    .catch(() => {});
 </script>
 <script src="main.js"></script>
 </body>
