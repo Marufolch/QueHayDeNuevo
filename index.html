@@ -496,24 +496,28 @@
 </div>
 
 <script>
-  // Cambiá "miclaveSecreta" por la palabra que quieras
+  // Cambiá "Apolo267" por tu clave secreta
   const CLAVE = 'Apolo267';
 
   const params = new URLSearchParams(window.location.search);
+
+  // URL de CounterAPI — "quehaydenuevojobs" es tu namespace único, no lo cambies
+  const API_URL = 'https://api.counterapi.dev/v1/quehaydenuevojobs/visitas/up';
+
   if (params.get('admin') === CLAVE) {
-    fetch('https://api.countapi.xyz/hit/quehaydenuevojobs/visitas')
+    // Sos vos: suma 1 y muestra el contador
+    fetch(API_URL)
       .then(r => r.json())
       .then(data => {
-        document.getElementById('visitas-num').textContent = data.value.toLocaleString('es-AR');
+        document.getElementById('visitas-num').textContent = data.count.toLocaleString('es-AR');
         document.getElementById('visitas-box').style.display = 'block';
       })
       .catch(() => {});
   } else {
-    // Visita normal: suma igual, pero no muestra nada
-    fetch('https://api.countapi.xyz/hit/quehaydenuevojobs/visitas').catch(() => {});
+    // Visitante normal: suma 1 en silencio, no muestra nada
+    fetch(API_URL).catch(() => {});
   }
 </script>
-```
 <script src="main.js"></script>
 </body>
 </html>
