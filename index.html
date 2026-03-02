@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¿Qué hay de nuevo? — Inicio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Estilos exclusivos del index ───────────────────── */
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem clamp(1rem,5vw,4rem);
+      display: flex; align-items: center;
+      min-height: 480px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(240,192,64,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 20% 80%, rgba(79,195,247,0.06) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.03;
+      background-image:
+        linear-gradient(var(--text) 1px, transparent 1px),
+        linear-gradient(90deg, var(--text) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; max-width: 620px; }
+    .hero-eyebrow {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.05;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: normal; color: var(--accent);
+    }
+    .hero p {
+      font-size: 1.05rem; color: var(--text-muted);
+      max-width: 480px; margin-bottom: 2rem;
+    }
+    .hero-cta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .hero-stat {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 99px; padding: 0.35rem 0.9rem;
+      font-size: 0.78rem; color: var(--text-muted);
+    }
+    .hero-stat strong { color: var(--text); }
+
+    /* Dolar strip */
+    .dolar-strip {
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .dolar-strip::-webkit-scrollbar { display: none; }
+    .dolar-inner {
+      display: flex; min-width: max-content;
+      padding: 0 clamp(1rem,4vw,3rem);
+    }
+    .dolar-card {
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 0.15rem;
+      padding: 1rem 2rem 1rem 0;
+      border-right: 1px solid var(--border);
+      margin-right: 2rem;
+    }
+    .dolar-card:last-child { border-right: none; }
+    .dolar-card .dolar-name {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .dolar-vals {
+      display: flex; gap: 0.75rem; align-items: baseline;
+    }
+    .dolar-compra {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--accent);
+    }
+    .dolar-venta {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--accent3);
+    }
+    .dolar-label {
+      font-size: 0.68rem; color: var(--text-muted);
+    }
+    .dolar-fecha {
+      font-size: 0.65rem; color: var(--text-muted); margin-top: 0.1rem;
+    }
+
+    /* Sections spacing */
+    .section { padding: 3.5rem 0; }
+
+    /* News grid */
+    .news-hero {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.25rem;
+    }
+    .news-hero .card-img { height: 320px; }
+    .news-side { display: flex; flex-direction: column; gap: 1.25rem; }
+    .news-side .card-img { height: 140px; }
+
+    .news-featured-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .news-featured h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 700; line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+    .news-featured p {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;
+    }
+
+    /* Tendencias */
+    .trend-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .trend-item:hover { border-color: rgba(255,255,255,0.14); transform: translateY(-2px); }
+    .trend-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem; font-weight: 800;
+      color: var(--border); line-height: 1; min-width: 2.5rem;
+    }
+    .trend-body h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem;
+    }
+    .trend-body p { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Quick nav cards */
+    .qnav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .qnav-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.25rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      cursor: pointer;
+      transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+      text-decoration: none; color: inherit;
+    }
+    .qnav-card:hover {
+      transform: translateY(-4px); border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), var(--shadow);
+    }
+    .qnav-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .qnav-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem; font-weight: 700;
+    }
+    .qnav-card p { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .news-hero { grid-template-columns: 1fr; }
+      .news-side { flex-direction: row; overflow-x: auto; }
+      .news-side .card { min-width: 250px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════════════════════════ -->
+<nav class="navbar">
+  <a href="index.html" class="logo">¿Qué hay <span>de nuevo?</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"       class="active">Inicio</a></li>
+    <li><a href="autos.html">Autos</a></li>
+    <li><a href="objetos.html">Objetos</a></li>
+    <li><a href="empleos.html">Empleos</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<nav class="nav-mobile" id="nav-mobile">
+  <a href="index.html" class="active">Inicio</a>
+  <a href="autos.html">Autos</a>
+  <a href="objetos.html">Objetos</a>
+  <a href="empleos.html">Empleos</a>
+  <a href="servicios.html">Servicios</a>
+</nav>
+
+<!-- ══════════════ HERO ════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content fade-in">
+    <p class="hero-eyebrow">🇦🇷 Argentina · Actualizado hoy</p>
+    <h1>Todo lo que<br>necesitás saber,<br><em>en un lugar</em></h1>
+    <p>Comprá y vendé, encontrá empleo, publicá tu servicio y mantente informado con las noticias que importan.</p>
+    <div class="hero-cta">
+      <a href="autos.html"   class="btn btn-primary">Explorar avisos</a>
+      <a href="empleos.html" class="btn btn-outline">Ver empleos</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ DÓLAR STRIP ════════════════════════════ -->
+<div class="dolar-strip">
+  <div class="dolar-inner">
+
+    <div class="dolar-card" id="dolar-oficial">
+      <span class="dolar-name">Dólar Oficial</span>
+      <div class="dolar-vals">
+        <span class="dolar-compra">$1.365</span><span class="dolar-label">compra</span>
+        <span class="dolar-venta">$1.415</span><span class="dolar-label">venta</span>
+      </div>
+      <span class="dolar-fecha">Actualizando…</span>
+    </div>
+
+    <div class="dolar-card" id="dolar-blue">
+      <span class="dolar-name">Dólar Blue</span>
+      <div class="dolar-vals">
+        <span class="dolar-compra">$1.425</span><span class="dolar-label">compra</span>
+        <span class="dolar-venta">$1.445</span><span class="dolar-label">venta</span>
+      </div>
+      <span class="dolar-fecha">Actualizando…</span>
+    </div>
+
+    <div class="dolar-card" id="dolar-mep">
+      <span class="dolar-name">Dólar MEP</span>
+      <div class="dolar-vals">
+        <span class="dolar-compra">$1.422</span><span class="dolar-label">compra</span>
+        <span class="dolar-venta">$1.428</span><span class="dolar-label">venta</span>
+      </div>
+      <span class="dolar-fecha">Actualizando…</span>
+    </div>
+
+    <div class="dolar-card" id="dolar-ccl">
+      <span class="dolar-name">Contado c/Liq.</span>
+      <div class="dolar-vals">
+        <span class="dolar-compra">$1.471</span><span class="dolar-label">compra</span>
+        <span class="dolar-venta">$1.473</span><span class="dolar-label">venta</span>
+      </div>
+      <span class="dolar-fecha">Actualizando…</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════ ACCESOS RÁPIDOS ════════════════════════ -->
+<div class="container">
+  <section class="section">
+    <h2 class="section-title">Explorá las secciones</h2>
+    <div class="qnav-grid fade-in">
+
+      <a href="autos.html" class="qnav-card">
+        <div class="qnav-icon" style="background:rgba(240,192,64,0.12)">🚗</div>
+        <h3>Autos</h3>
+        <p>Comprá o vendé tu vehículo. Cero kilómetro y usados.</p>
+        <span class="badge badge-yellow">248 avisos</span>
+      </a>
+
+      <a href="objetos.html" class="qnav-card">
+        <div class="qnav-icon" style="background:rgba(79,195,247,0.12)">📦</div>
+        <h3>Objetos</h3>
+        <p>Electrónica, hogar, ropa, deportes y más.</p>
+        <span class="badge badge-blue">1.340 avisos</span>
+      </a>
+
+      <a href="empleos.html" class="qnav-card">
+        <div class="qnav-icon" style="background:rgba(74,222,128,0.12)">💼</div>
+        <h3>Empleos</h3>
+        <p>Ofertas laborales en todo el país.</p>
+        <span class="badge badge-green">512 empleos</span>
+      </a>
+
+      <a href="servicios.html" class="qnav-card">
+        <div class="qnav-icon" style="background:rgba(255,107,107,0.12)">🔧</div>
+        <h3>Servicios</h3>
+        <p>Plomeros, electricistas, diseñadores y más.</p>
+        <span class="badge badge-red">789 servicios</span>
+      </a>
+
+    </div>
+  </section>
+
+<!-- ══════════════ NOTICIAS ════════════════════════════════ -->
+  <section class="section">
+    <h2 class="section-title">🗞 Noticias que importan</h2>
+
+    <div class="news-hero fade-in">
+
+      <!-- Noticia principal -->
+      <div class="card">
+        <div class="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&auto=format&fit=crop"
+            alt="Inteligencia artificial en salud"
+            loading="lazy"
+          />
+        </div>
+        <div class="card-body">
+          <p class="news-featured-label">🔬 Salud · Tendencia global</p>
+          <h2>La IA ya diagnostica enfermedades con mayor precisión que los médicos en estudios de imagen</h2>
+          <p>Un estudio publicado en <em>Nature Medicine</em> reveló que los modelos de inteligencia artificial entrenados con millones de imágenes médicas superan a radiólogos expertos en la detección temprana de cáncer de pulmón y mama. En Argentina, varios centros médicos privados ya están incorporando estas herramientas como asistente diagnóstico, reduciendo los tiempos de espera hasta un 60%.</p>
+          <div class="card-meta">
+            <span>25 feb 2026 · 4 min de lectura</span>
+            <span class="badge badge-red">🔥 Trending</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Noticias secundarias -->
+      <div class="news-side">
+
+        <div class="card">
+          <div class="card-img">
+            <img
+              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500&auto=format&fit=crop"
+              alt="Energía solar en Argentina"
+              loading="lazy"
+            />
+          </div>
+          <div class="card-body">
+            <p class="card-tag">☀️ Energía</p>
+            <h3>Argentina duplicó su capacidad de energía solar en 2025</h3>
+            <p>Las provincias de San Juan y Mendoza lideran la transición energética con nuevos parques fotovoltaicos que abastecen a 300.000 hogares.</p>
+            <div class="card-meta"><span>23 feb 2026</span><span class="badge badge-green">En auge</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">
+            <img
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&auto=format&fit=crop"
+              alt="Industria tecnológica"
+              loading="lazy"
+            />
+          </div>
+          <div class="card-body">
+            <p class="card-tag">💻 Tecnología</p>
+            <h3>El sector tech argentino exportó USD 12.000 M en 2025</h3>
+            <p>Las exportaciones de software y servicios tecnológicos batieron récords históricos, consolidando al país como hub regional de talento digital.</p>
+            <div class="card-meta"><span>21 feb 2026</span><span class="badge badge-blue">Economía</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<!-- ══════════════ MÁS NOTICIAS ════════════════════════════ -->
+  <section class="section">
+    <h2 class="section-title">📌 También en las noticias</h2>
+    <div class="grid-3 fade-in">
+
+      <div class="card">
+        <div class="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop"
+            alt="Fintech y pagos digitales"
+            loading="lazy"
+          />
+        </div>
+        <div class="card-body">
+          <p class="card-tag">💳 Fintech</p>
+          <h3>Las billeteras digitales ya mueven más dinero que los bancos tradicionales</h3>
+          <p>Mercado Pago y Ualá procesan juntas más transacciones diarias que el sistema bancario formal. La tendencia se acelera en jóvenes de 18 a 35 años.</p>
+          <div class="card-meta"><span>24 feb 2026</span><span class="badge badge-yellow">Popular</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop"
+            alt="Salud preventiva"
+            loading="lazy"
+          />
+        </div>
+        <div class="card-body">
+          <p class="card-tag">🏥 Salud preventiva</p>
+          <h3>Salud preventiva: el nuevo modelo médico que reduce internaciones hasta un 40%</h3>
+          <p>Clínicas de todo el país adoptan protocolos de chequeos periódicos potenciados por análisis de datos genéticos para anticiparse a enfermedades crónicas.</p>
+          <div class="card-meta"><span>22 feb 2026</span><span class="badge badge-green">Importante</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img
+            src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&auto=format&fit=crop"
+            alt="Economía circular"
+            loading="lazy"
+          />
+        </div>
+        <div class="card-body">
+          <p class="card-tag">♻️ Sustentabilidad</p>
+          <h3>Economía circular: empresas argentinas ahorran millones reciclando residuos industriales</h3>
+          <p>Más de 200 pymes adoptaron modelos de producción circular en 2025, transformando sus desechos en materias primas secundarias y reduciendo costos.</p>
+          <div class="card-meta"><span>20 feb 2026</span><span class="badge badge-blue">Sustentable</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<!-- ══════════════ TENDENCIAS ══════════════════════════════ -->
+  <section class="section">
+    <h2 class="section-title">📈 Lo más buscado esta semana</h2>
+    <div class="grid-2 fade-in">
+
+      <div class="trend-item">
+        <span class="trend-num">01</span>
+        <div class="trend-body">
+          <h4>Ford Ranger 2024 — desde $28.000.000</h4>
+          <p>La pick-up más buscada en la sección de autos. Alta demanda en el interior del país.</p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <span class="trend-num">02</span>
+        <div class="trend-body">
+          <h4>iPhone 16 usado — desde $500.000</h4>
+          <p>Electrónica lidera en objetos. Stock limitado, precios en baja por modelos más nuevos.</p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <span class="trend-num">03</span>
+        <div class="trend-body">
+          <h4>Desarrollador Full Stack — $1.200.000/mes</h4>
+          <p>El empleo tecnológico no se detiene. Más de 80 empresas buscan perfiles tech esta semana.</p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <span class="trend-num">04</span>
+        <div class="trend-body">
+          <h4>Plomero de urgencias — CABA y GBA</h4>
+          <p>Los servicios del hogar dominan la sección. Plomería es el rubro con más demanda activa.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+<!-- ══════════════ FOOTER ══════════════════════════════════ -->
+<footer>
+  <span class="logo">¿Qué hay de nuevo?</span>
+  <p>© 2026 — Clasificados y noticias de Argentina</p>
+  <nav class="footer-links">
+    <a href="autos.html">Autos</a>
+    <a href="objetos.html">Objetos</a>
+    <a href="empleos.html">Empleos</a>
+    <a href="servicios.html">Servicios</a>
+  </nav>
+</footer>
+<!-- CONTADOR DE VISITAS (solo visible con ?admin=true en la URL) -->
+<div id="visitas-box" style="display:none; position:fixed; bottom:1.5rem; right:1.5rem; background:#151820; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:0.75rem 1.25rem; font-family:'Syne',sans-serif; font-size:0.85rem; color:#e8eaf2; z-index:999; box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+  👁 Visitas totales: <strong id="visitas-num">…</strong>
+</div>
+
+<script type="module">
+  import { initializeApp }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getDatabase, ref, runTransaction }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+
+  const app = initializeApp({
+    apiKey:      'AIzaSyC0FSH_x0pBpTK6Yki_L3cZSE3K8ZQqITw',
+    databaseURL: 'https://quehaydenuevo-d19e4-default-rtdb.firebaseio.com'
+  });
+
+  const db      = getDatabase(app);
+  const contRef = ref(db, 'visitas');
+  const CLAVE   = 'Apolo267';
+  const params  = new URLSearchParams(window.location.search);
+
+  runTransaction(contRef, current => (current || 0) + 1)
+    .then(result => {
+      if (params.get('admin') === CLAVE) {
+        const total = result.snapshot.val();
+        document.getElementById('visitas-num').textContent = total.toLocaleString('es-AR');
+        document.getElementById('visitas-box').style.display = 'block';
+      }
+    })
+    .catch(() => {});
+</script>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compra/Venta de Autos — ¿Qué hay de nuevo?</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .section { padding: 3rem 0; }
+    .auto-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+    .auto-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(255,255,255,0.14); }
+    .auto-card .card-img { height: 210px; position: relative; }
+    .auto-card .card-img img { height: 100%; object-fit: cover; }
+    .auto-badge { position: absolute; top: 10px; left: 10px; }
+    .auto-body { padding: 1.25rem; }
+    .auto-body h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .auto-specs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.75rem 0; }
+    .spec-pill { background: var(--surface2); border: 1px solid var(--border); border-radius: 99px; padding: 0.2rem 0.65rem; font-size: 0.72rem; color: var(--text-muted); }
+    .auto-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .highlight-banner { background: linear-gradient(135deg, rgba(240,192,64,0.08), rgba(79,195,247,0.06)); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .highlight-banner .icon { font-size: 3rem; }
+    .highlight-banner h2 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; }
+    .highlight-banner p { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem; }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">¿Qué hay <span>de nuevo?</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="autos.html" class="active">Autos</a></li>
+    <li><a href="objetos.html">Objetos</a></li>
+    <li><a href="empleos.html">Empleos</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<nav class="nav-mobile" id="nav-mobile">
+  <a href="index.html">Inicio</a>
+  <a href="autos.html" class="active">Autos</a>
+  <a href="objetos.html">Objetos</a>
+  <a href="empleos.html">Empleos</a>
+  <a href="servicios.html">Servicios</a>
+</nav>
+
+<!-- Page header -->
+<div class="page-header">
+  <div class="container">
+    <span class="tag">🚗 Clasificados</span>
+    <h1>Compra y venta de autos</h1>
+    <p>Encontrá el vehículo ideal o publicá el tuyo. Cero km, usados, motos y utilitarios.</p>
+  </div>
+</div>
+
+<div class="container">
+  <section class="section">
+
+    <!-- Banner -->
+    <div class="highlight-banner fade-in">
+      <span class="icon">🚀</span>
+      <div>
+        <h2>Publicá tu auto gratis</h2>
+        <p>Tu aviso llega a miles de compradores en todo el país. Sin comisiones ocultas.</p>
+      </div>
+      <a href="#" class="btn btn-primary" style="margin-left:auto">Publicar aviso</a>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="sedan">Sedán</button>
+      <button class="filter-btn" data-filter="suv">SUV</button>
+      <button class="filter-btn" data-filter="pickup">Pick-up</button>
+      <button class="filter-btn" data-filter="electrico">Eléctrico</button>
+      <button class="filter-btn" data-filter="moto">Motos</button>
+    </div>
+
+    <!-- Grid de autos -->
+    <div class="grid-3 fade-in">
+      
+     
+    </div>
+    <!-- More button -->
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="#" class="btn btn-outline">Ver más avisos →</a>
+    </div>
+
+  </section>
+</div>
+
+<footer>
+  <span class="logo">¿Qué hay de nuevo?</span>
+  <p>© 2026 — Clasificados y noticias de Argentina</p>
+  <nav class="footer-links">
+    <a href="autos.html">Autos</a>
+    <a href="objetos.html">Objetos</a>
+    <a href="empleos.html">Empleos</a>
+    <a href="servicios.html">Servicios</a>
+  </nav>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
