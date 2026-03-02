@@ -27,7 +27,7 @@
     "precio": "$38.500.000",
     "badge": "Destacado",
     "badgeColor": "badge-yellow",
-    "imagenes": ["/Imagen/moto1.jpeg", "/Imagen/moto2.jpeg","/Imagen/moto3.jpeg"]
+    "imagenes": ["Imagen/moto1.jpeg", "Imagen/moto2.jpeg","Imagen/moto3.jpeg"]
   },
   {
     "id": 3,
